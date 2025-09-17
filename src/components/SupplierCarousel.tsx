@@ -134,81 +134,58 @@ const SupplierCarousel = () => {
         </div>
 
         {/* Suppliers grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {visibleSuppliers.map((supplier) => (
-            <Card key={supplier.id} className="group cursor-pointer hover:shadow-marketplace-hover transition-all duration-300 transform hover:scale-105">
-              <CardContent className="p-6">
-                {/* Header with logo and verified badge */}
-                <div className="flex items-start space-x-4 mb-4">
+            <Card key={supplier.id} className="group cursor-pointer hover:shadow-lg transition-all duration-200 border-0 bg-card/50">
+              <CardContent className="p-4">
+                {/* Simplified header */}
+                <div className="flex items-center space-x-3 mb-3">
                   <div className="relative">
                     <img 
                       src={supplier.logo} 
                       alt={supplier.name}
-                      className="w-16 h-16 rounded-lg object-cover"
+                      className="w-12 h-12 rounded-full object-cover"
                     />
                     {supplier.verified && (
-                      <Badge className="absolute -top-1 -right-1 bg-marketplace-success text-white text-xs px-1">
-                        ✓
-                      </Badge>
+                      <div className="absolute -top-1 -right-1 w-4 h-4 bg-marketplace-success rounded-full flex items-center justify-center">
+                        <span className="text-white text-xs">✓</span>
+                      </div>
                     )}
                   </div>
                   
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-foreground mb-1">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-foreground text-sm truncate">
                       {supplier.name}
                     </h3>
-                    <div className="flex items-center space-x-1 mb-1">
-                      <MapPin className="h-3 w-3 text-muted-foreground" />
-                      <span className="text-xs text-muted-foreground">
-                        {supplier.location}
-                      </span>
+                    <div className="flex items-center space-x-1 text-xs text-muted-foreground">
+                      <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+                      <span>{supplier.rating}</span>
+                      <span>•</span>
+                      <span>{supplier.products}+</span>
                     </div>
-                    <span className="text-xs text-muted-foreground">
-                      {supplier.yearsActive} años activo
-                    </span>
                   </div>
                 </div>
 
-                {/* Rating */}
-                <div className="flex items-center space-x-2 mb-3">
-                  <div className="flex items-center space-x-1">
-                    <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-                    <span className="font-medium text-foreground">
-                      {supplier.rating}
-                    </span>
-                  </div>
-                  <span className="text-sm text-muted-foreground">
-                    ({supplier.reviews} reseñas)
-                  </span>
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-4 mb-4">
+                {/* Minimal stats */}
+                <div className="flex justify-between text-center">
                   <div>
-                    <p className="text-lg font-bold text-marketplace-orange">
-                      {supplier.products.toLocaleString()}
+                    <p className="text-sm font-semibold text-marketplace-orange">
+                      {supplier.yearsActive}
                     </p>
-                    <p className="text-xs text-muted-foreground">Productos</p>
+                    <p className="text-xs text-muted-foreground">Años</p>
                   </div>
                   <div>
-                    <p className="text-lg font-bold text-marketplace-blue">
+                    <p className="text-sm font-semibold text-marketplace-blue">
+                      {supplier.reviews}
+                    </p>
+                    <p className="text-xs text-muted-foreground">Reviews</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">
                       {supplier.categories.length}
                     </p>
                     <p className="text-xs text-muted-foreground">Categorías</p>
                   </div>
-                </div>
-
-                {/* Categories */}
-                <div className="flex flex-wrap gap-1">
-                  {supplier.categories.map((category, index) => (
-                    <Badge 
-                      key={index} 
-                      variant="secondary" 
-                      className="text-xs"
-                    >
-                      {category}
-                    </Badge>
-                  ))}
                 </div>
               </CardContent>
             </Card>

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface Product {
   id: number;
@@ -76,7 +77,8 @@ const ProductCarousel = ({ title, subtitle, products }: ProductCarouselProps) =>
         {/* Products grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {visibleProducts.map((product) => (
-            <Card key={product.id} className="group cursor-pointer hover:shadow-marketplace-hover transition-all duration-300 transform hover:scale-105">
+            <Link to={`/product/${product.id}`} key={product.id}>
+              <Card className="group cursor-pointer hover:shadow-marketplace-hover transition-all duration-300 transform hover:scale-105">
               <CardContent className="p-0">
                 {/* Image container */}
                 <div className="relative overflow-hidden rounded-t-lg">
@@ -147,6 +149,7 @@ const ProductCarousel = ({ title, subtitle, products }: ProductCarouselProps) =>
                 </div>
               </CardContent>
             </Card>
+            </Link>
           ))}
         </div>
       </div>
