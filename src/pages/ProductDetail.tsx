@@ -283,8 +283,8 @@ const ProductDetail = () => {
               </div>
 
               {/* Supplier Info */}
-              <Card>
-                <CardContent className="p-4">
+              <Card className="mt-5">
+                <CardContent className="p-4 ">
                   <div className="flex items-center justify-between mb-3">
                     <h3 className="font-semibold">Vendido por: {product.supplier.name}</h3>
                     {product.supplier.verified && (

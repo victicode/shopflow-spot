@@ -25,9 +25,9 @@ const Header = () => {
 
       {/* Main header */}
       <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between cursor-pointer">
           {/* Logo */}
-          <div className="flex items-center">
+          <div className="flex items-center" onClick={() => navigate("/")}>
             <h1 className="text-2xl font-bold text-marketplace-orange mr-8">
               MarketPlace
             </h1>
