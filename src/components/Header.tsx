@@ -56,7 +56,12 @@ const Header = () => {
               <Heart className="h-5 w-5" />
               <span>Favoritos</span>
             </Button>
-            <Button variant="ghost" size="sm" className="flex items-center space-x-1">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="flex items-center space-x-1"
+              onClick={() => window.location.href = '/cart'}
+            >
               <ShoppingCart className="h-5 w-5" />
               <span>Carrito</span>
             </Button>
