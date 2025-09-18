@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Minus, Plus, Trash2, ArrowLeft, ShoppingCart, CreditCard } from "lucide-react";
+import { Minus, Plus, Trash2, ArrowLeft, ShoppingCart, CreditCard, User, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 
@@ -21,6 +22,7 @@ interface CartItem {
 
 const Cart = () => {
   const navigate = useNavigate();
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [cartItems, setCartItems] = useState<CartItem[]>([
     {
       id: "1",
@@ -214,7 +216,10 @@ const Cart = () => {
                   </div>
 
                   <div className="space-y-3">
-                    <Button className="w-full h-12 text-base font-semibold">
+                    <Button 
+                      className="w-full h-12 text-base font-semibold"
+                      onClick={() => setShowLoginModal(true)}
+                    >
                       <CreditCard className="w-5 h-5 mr-2" />
                       Proceder al Pago
                     </Button>
@@ -244,6 +249,79 @@ const Cart = () => {
           </div>
         )}
       </div>
+
+      {/* Login Modal */}
+      <Dialog open={showLoginModal} onOpenChange={setShowLoginModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-xl">
+              <User className="w-5 h-5 text-primary" />
+              Inicia Sesión para Continuar
+            </DialogTitle>
+            <DialogDescription>
+              Para finalizar tu compra necesitas tener una cuenta. Es rápido y seguro.
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="space-y-4 py-4">
+            <div className="flex items-center gap-4 p-4 bg-muted/50 rounded-lg">
+              <div className="flex-shrink-0">
+                <Lock className="w-8 h-8 text-primary" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="font-medium">Compra 100% Segura</h4>
+                <p className="text-sm text-muted-foreground">
+                  Tus datos están protegidos con encriptación de nivel bancario
+                </p>
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Acceso instantáneo a tu historial de compras</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>Seguimiento en tiempo real de tus pedidos</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm">
+                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                <span>Ofertas exclusivas para miembros</span>
+              </div>
+            </div>
+          </div>
+          
+          <DialogFooter className="flex-col gap-2 sm:flex-col">
+            <Button 
+              className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
+              onClick={() => {
+                setShowLoginModal(false);
+                navigate("/login");
+              }}
+            >
+              Iniciar Sesión
+            </Button>
+            <Button 
+              variant="outline" 
+              className="w-full"
+              onClick={() => {
+                setShowLoginModal(false);
+                navigate("/login");
+              }}
+            >
+              Crear Cuenta Nueva
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full text-muted-foreground"
+              onClick={() => setShowLoginModal(false)}
+            >
+              Continuar sin cuenta
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
