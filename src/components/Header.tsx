@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Search, ShoppingCart, User, Heart, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -5,6 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
   return (
     <header className="bg-card border-b shadow-marketplace">
       {/* Top bar */}
@@ -35,17 +44,20 @@ const Header = () => {
 
           {/* Search bar */}
           <div className="flex-1 max-w-2xl mx-8">
-            <div className="relative flex">
+            <form onSubmit={handleSearch} className="relative flex">
               <Input 
                 placeholder="Buscar productos, marcas y más..." 
                 className="flex-1 rounded-r-none border-r-0 focus:ring-marketplace-orange focus:border-marketplace-orange"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
               <Button 
+                type="submit"
                 className="rounded-l-none bg-marketplace-orange hover:bg-marketplace-orange/90 px-6"
               >
                 <Search className="h-5 w-5" />
               </Button>
-            </div>
+            </form>
           </div>
 
           {/* User actions */}
