@@ -90,6 +90,15 @@ const Header = () => {
               <ShoppingCart className="h-5 w-5" />
               <span>Carrito</span>
             </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex items-center space-x-1 bg-primary/10 hover:bg-primary/20"
+              onClick={() => navigate("/supplier-dashboard")}
+            >
+              <User className="h-5 w-5" />
+              <span>Dashboard</span>
+            </Button>
           </div>
         </div>
       </div>
