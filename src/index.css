@@ -42,8 +42,8 @@ All colors MUST be HSL.
     
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(var(--marketplace-orange)), hsl(16 84% 66%));
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 98%));
-    --gradient-category: linear-gradient(45deg, hsl(var(--marketplace-blue)), hsl(210 90% 58%));
+   /* --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 98%));
+   */ --gradient-category: linear-gradient(45deg, hsl(var(--marketplace-blue)), hsl(210 90% 58%));
     
     /* Shadows */
     --shadow-marketplace: 0 4px 20px hsl(220 13% 18% / 0.08);

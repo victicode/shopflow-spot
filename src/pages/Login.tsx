@@ -109,7 +109,7 @@ const Login = () => {
                   
                   <Button 
                     type="submit" 
-                    className="w-full h-11 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all"
+                    className="w-full h-11 bg-primary hover:bg-primary/90 transition-all"
                     disabled={isLoading}
                   >
                     {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
@@ -182,7 +182,7 @@ const Login = () => {
                   
                   <Button 
                     type="submit" 
-                    className="w-full h-11 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 transition-all"
+                    className="w-full h-11 bg-primary hover:bg-primary/90 transition-all"
                     disabled={isLoading}
                   >
                     {isLoading ? "Creando cuenta..." : "Crear Cuenta"}
